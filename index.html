@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Long Division Helper</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <div class="background-image"></div>
+
+    <section id="menuPage">
+      <div id="content">
+        <h2 id="text-shadows">Long Division Helper</h2>
+      </div>
+      <nav>
+        <button id="gameButton">Press Me to Play!</button>
+      </nav>
+    </section>
+
+    <section id="gamePage" style="display: none">
+      <div id="gameTitle"></div>
+      <h2 id="shadows"></h2>
+      <img id="divisorSymbol" src="images/divisor-sign.png" alt="Image" />
+      <p id="dividend">dividend</p>
+      <p id="divisor">divisor</p>
+      <p id="quotient"></p>
+      <input id="textInput" type="text" onkeydown="handleKeyPress(event)">
+      <p id="suggestions"></p>
+      <p id="promptRemainder"></p>
+      <p id="subtractor"></p>
+      <p id="subtractorans"></p>
+      <p id="bringdown"></p>
+      <p id="output"></p>
+      <p id="iscorrect"></p>
+      <p id="win"></p>
+
+      <div id="minus_sign"></div>
+      <div id="operation_bar"></div>
+      <p class="text" id="answer"></p>
+
+      <div id="buttons">
+        <button id="q1" onclick="checkButton(States.ExpectingBringDown)">Bring down</button>
+        <button id="q2" onclick="checkButton(States.ExpectingRemainder)">Remainder</button>
+        <button id="q3" onclick="checkButton(States.ExpectingDivision)">Divide</button>
+        <button id="q4"onclick="checkButton(States.ExpectingMultiplication)">Multiply</button>
+        <button id="q5"onclick="checkButton(States.ExpectingSubtraction)">Subtract</button>
+     </div>
+
+    </section>
+
+    <script src="division.js"></script>
+  </body>
+</html>

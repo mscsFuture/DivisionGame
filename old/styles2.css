@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Apply styles to the header */
+header {
+    /*background-color: #333;*/
+    color: #000;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Apply styles to the navigation menu */
+  nav {
+    background-color: #fff;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  /* Apply styles to the menu and game buttons */
+  nav button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  /* Apply styles to the active button */
+  nav button.active {
+    background-color: #555;
+  }
+  
+  /* Apply styles to the sections */
+  section {
+    margin: 20px;
+  }
+  
+  /* Apply styles to the menu page */
+  #menuPage {
+    display: block;
+  }
+  
+  /* Apply styles to the game page */
+  #gamePage {
+    display: none;
+  }
+
+.background-image {
+    background-image: url('images/handdrawn-style-blue-cute-education-math-lovely-powerpoint-background_a698b5341c__960_540.avif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    /*width: 100vh;*/
+    height: 100vh;
+}

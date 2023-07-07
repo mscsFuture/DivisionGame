@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Long Division Helper</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <div class="background-image"></div>
+
+    <section id="menuPage">
+      <div id="content">
+        <h2 id="text-shadows">Long Division Helper</h2>
+      </div>
+      <nav>
+        <button id="gameButton">Press Me to Play!</button>
+      </nav>
+    </section>
+
+    <section id="gamePage" style="display: none">
+      <div id="gameTitle"></div>
+      <h2 id="shadows"></h2>
+      <img id="divisorSymbol" src="images/divisor-sign.png" alt="Image" />
+      <p id="dividend">dividend</p>
+      <p id="divisor">divisor</p>
+      <input id="textInput" type="text" onkeydown="handleKeyPress(event)">
+      <p id="suggestions"></p>
+      <p id="promptRemainder"></p>
+      <p id="output"></p>
+      <p id="incorrect"></p>
+      <p id="correct"></p>
+      <p id="win"></p>
+
+    </section>
+
+    <script src="division.js"></script>
+  </body>
+</html>
