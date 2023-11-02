@@ -160,10 +160,59 @@ function switchPage(fromPage, toPage) {
     const divisorEl = document.getElementById('divisor');
     dividendEl.textContent = dividend;
     divisorEl.textContent = divisor;
-    document.getElementById('quotient').textContent = '\0';
+
+    // Loop through dividendEl.textContent and wrap each text item in a <span> element
+    let dividendText = '';
+    console.log(dividendEl.textContent)
+    if (dividendEl.textContent.length === 1) {
+      dividendText += `<span style="color: ${'blue'};">${dividendEl.textContent[0]}</span>`;
+    }
+    if (dividendEl.textContent.length === 2) {
+      dividendText += `<span style="color: ${'red'};">${dividendEl.textContent[0]}</span>`;
+      dividendText += `<span style="color: ${'blue'};">${dividendEl.textContent[1]}</span>`;
+    }
+    if (dividendEl.textContent.length === 3) {
+      dividendText += `<span style="color: ${'green'};">${dividendEl.textContent[0]}</span>`;
+      dividendText += `<span style="color: ${'red'};">${dividendEl.textContent[1]}</span>`;
+      dividendText += `<span style="color: ${'blue'};">${dividendEl.textContent[2]}</span>`;
+    }
+    if (dividendEl.textContent.length === 4) {
+      dividendText += `<span style="color: ${'yellow'};">${dividendEl.textContent[0]}</span>`;
+      dividendText += `<span style="color: ${'green'};">${dividendEl.textContent[1]}</span>`;
+      dividendText += `<span style="color: ${'red'};">${dividendEl.textContent[2]}</span>`;
+      dividendText += `<span style="color: ${'blue'};">${dividendEl.textContent[3]}</span>`;
+    }
+    console.log("dividendText: " + dividendText);
+
+    // Loop through divisorEl.textContent and wrap each text item in a <span> element
+    let divisorText = '';
+    console.log(divisorEl.textContent)
+    if (divisorEl.textContent.length === 1) {
+      divisorText += `<span style="color: ${'blue'};">${divisorEl.textContent[0]}</span>`;
+    }
+    if (divisorEl.textContent.length === 2) {
+      divisorText += `<span style="color: ${'red'};">${divisorEl.textContent[0]}</span>`;
+      divisorText += `<span style="color: ${'blue'};">${divisorEl.textContent[1]}</span>`;
+    }
+    if (divisorEl.textContent.length === 3) {
+      divisorText += `<span style="color: ${'green'};">${divisorEl.textContent[0]}</span>`;
+      divisorText += `<span style="color: ${'red'};">${divisorEl.textContent[1]}</span>`;
+      divisorText += `<span style="color: ${'blue'};">${divisorEl.textContent[2]}</span>`;
+    }
+    if (divisorEl.textContent.length === 4) {
+      divisorText += `<span style="color: ${'yellow'};">${divisorEl.textContent[0]}</span>`;
+      divisorText += `<span style="color: ${'green'};">${divisorEl.textContent[1]}</span>`;
+      divisorText += `<span style="color: ${'red'};">${divisorEl.textContent[2]}</span>`;
+      divisorText += `<span style="color: ${'blue'};">${divisorEl.textContent[3]}</span>`;
+    }
+    console.log("divisorText: " + divisorText);
+
+    dividendEl.innerHTML = dividendText;
+    divisorEl.innerHTML = divisorText;
+
+    document.getElementById('quotient').textContent = " ";
     document.getElementById('quotient').textContent += " ".repeat(numDigits(smallDividend ) - 1);
   }
-  
   /*
    * Pushes a digit to the existing portion of the quotient that is visible to
    * the user.
@@ -345,6 +394,7 @@ function switchPage(fromPage, toPage) {
   
   function answerRemainder(number) {
     if (number == expectedRemainder) {
+      document.getElementById('quotient').innerHTML += " <b>R</b> " + expectedRemainder;
       //announceCorrect();
       announceSuccess();
   

@@ -179,7 +179,21 @@ body {
     transform: translate(-50%, -50%);
 }
 
-#dividend,
+
+#dividend {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 4vw; /* Adjust the value as needed */
+  font-weight: bold;
+  letter-spacing: 0.6vw; /* Adjust the value as needed */
+  position: absolute;
+  top: 36%;
+  left: 44%; /* Adjust the value as needed */
+
+}
+
+
+
+
 #divisor,
 #quotient {
     font-family: 'Courier New', Courier, monospace;
@@ -279,14 +293,123 @@ button {
     margin-bottom: 20px;
     font-weight: bold;
 }
-
-button:hover {
-    box-shadow: 0 12px #f07a6a;
+#q1
+{
+  padding: 15px 15px;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  margin-bottom: 20px;
+  font-weight: bold;
+  background-color: #4CAF50;
+  box-shadow: 0 9px #3d8f3d;
+  background-color: #4CAF50;
+  color: black;
+}
+#q1:hover
+{
+  box-shadow: 0 12px #5cbf5c;
+}
+#q1:active
+{
+  box-shadow: 0 6px #5cbf5c;
 }
 
-button:active {
-    box-shadow: 0 6px #f07a6a;
+#q2
+{
+  padding: 15px 15px;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  margin-bottom: 20px;
+  font-weight: bold;
+  background-color: #2196F3;
+  box-shadow: 0 9px #1c7ed6;
+  background-color: #2196F3;
+  color: black;
 }
+#q2:hover
+{
+  box-shadow: 0 12px #4aa3e6;
+}
+#q2:active
+{
+  box-shadow: 0 6px #4aa3e6;
+}
+
+#q3
+{
+  padding: 15px 15px;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  margin-bottom: 20px;
+  font-weight: bold;
+  background-color: #f44336;
+  box-shadow: 0 9px #d32f2f;
+  background-color: #f44336;
+  color: black;
+}
+#q3:hover
+{
+  box-shadow: 0 12px #f0625a;
+}
+#q3:active
+{
+  box-shadow: 0 6px #f0625a;
+}
+
+#q4{
+  padding: 15px 15px;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  margin-bottom: 20px;
+  font-weight: bold;
+  background-color: #9c27b0; /* updated color */
+  box-shadow: 0 9px #7b1fa2; /* updated color */
+  color: black;
+}
+#q4:hover
+{
+  box-shadow: 0 12px #b085c4; /* updated color */
+}
+#q4:active
+{
+  box-shadow: 0 6px #b085c4; /* updated color */
+}
+
+
+#q5
+{
+  padding: 15px 15px;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  margin-bottom: 20px;
+  font-weight: bold;
+  background-color: #FF9800; /* new color */
+  box-shadow: 0 9px #d17d00; /* updated color */
+  color: black;
+}
+#q5:hover
+{
+  box-shadow: 0 12px #ffb300; /* new color */
+}
+#q5:active
+{
+  box-shadow: 0 6px #ffb300; /* new color */
+}
+
+
+
+
+
 
 .text {
     font-family: 'Courier New', Courier, monospace;
