@@ -32,6 +32,41 @@
     left: 35%;
     animation: pulse .6s infinite alternate;
 }
+
+#yesButton {
+  padding: 15px 20px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #ffffff;
+  background-color: #13df20;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #0bcf18;
+  position: absolute;
+  top: 11%;
+  left: 55%;
+  animation: pulse .6s infinite alternate;
+}
+
+#noButton {
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #ffffff;
+  background-color: #ff0000;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #bb0e0e;
+  position: absolute;
+  top: 11%;
+  left: 64.5%;
+  animation: pulse .6s infinite alternate;
+}
+
 @keyframes pulse {
     0% {
       transform: scale(1);
@@ -45,6 +80,20 @@
 #gameButton:active {
     background-color: #f6aca2;
     box-shadow: 0 5px #ee6352;
+    transform: translateY(4px);
+  }
+
+#yesButton:hover {background-color: #41ff4d}
+#yesButton:active {
+    background-color: #41ff4d;
+    box-shadow: 0 5px #41ff4d;
+    transform: translateY(4px);
+  }
+
+#noButton:hover {background-color: #ff4848}
+#noButton:active {
+    background-color: #ff4848;
+    box-shadow: 0 5px #ff4848;
     transform: translateY(4px);
   }
 
@@ -109,6 +158,26 @@ body {
   color: var(--color-primary);
   animation: shadows 1.2s ease-in infinite;
   letter-spacing: 0.4rem;
+}
+
+#gameEndText {
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  color: #f49b90;
+  font-size: 4vw; /* Adjust the value as needed */
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 25%;
+  left: 60%;
+}
+
+#problemsText {
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  color: #f49b90;
+  font-size: 3vw; /* Adjust the value as needed */
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 45%;
+  left: 60.5%;
 }
 
 @keyframes shadows {
@@ -243,7 +312,7 @@ body {
     color: #f07a6a;
 }
 
-#textInput, #iscorrect, #win, #subtractor, #subtractorans, #bringdown {
+#textInput, #iscorrect, #subtractor, #subtractorans, #bringdown {
     font-family: "Comic Sans MS", "Comic Sans", cursive;
     color: #f49b90;
     font-size: 4vw; /* Adjust the value as needed */
@@ -251,9 +320,19 @@ body {
     transform: translate(-50%, -50%);
 }
 
-#iscorrect, #win {
+#iscorrect {
     top: 10%;
-    left: 50%;
+    left: 60%;
+}
+
+#playagain {
+  top: 6%;
+  left: 63%;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+    color: #f49b90;
+    font-size: 2vw; /* Adjust the value as needed */
+    position: absolute;
+    transform: translate(-50%, -50%);
 }
 
 #textInput {
@@ -431,5 +510,5 @@ button {
     text-align: left;
     white-space: pre-wrap;
     top: 45%;
-    left: 40.5%;
+    left: 41%;
 }
