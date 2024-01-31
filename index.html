@@ -16,6 +16,13 @@
       </nav>
     </section>
 
+    <section id="gameEndPage" style="display: none">
+      <div id="content">
+        <p class="text" id="gameEndText">Problem Recap:</p>
+        <p class="text" id="problemsText"></p>
+      </div>
+    </section>
+
     <section id="gamePage" style="display: none">
       <div id="gameTitle"></div>
       <h2 id="shadows"></h2>
@@ -31,7 +38,13 @@
       <p id="bringdown"></p>
       <p id="output"></p>
       <p id="iscorrect"></p>
-      <p id="win"></p>
+      <p id="playagain"></p>
+
+      <nav>
+        <button id="yesButton">Yes</button>
+        <button id="noButton">Recap</button>
+      </nav>
+      
 
       <div id="minus_sign"></div>
       <div id="operation_bar"></div>
@@ -43,7 +56,7 @@
         <button id="q3" onclick="checkButton(States.ExpectingDivision)">Divide:   <strong>/</strong></button>
         <button id="q4"onclick="checkButton(States.ExpectingMultiplication)">Multiply:   <strong>*</strong></button>
         <button id="q5"onclick="checkButton(States.ExpectingSubtraction)">Subtract:   <strong>-</strong></button>
-     </div>
+      </div>
 
     </section>
 
