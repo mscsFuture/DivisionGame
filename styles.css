@@ -67,6 +67,23 @@
   animation: pulse .6s infinite alternate;
 }
 
+#endedPlayAgain {
+  padding: 15px 20px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #ffffff;
+  background-color: #13df20;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #0bcf18;
+  position: absolute;
+  top: 65%;
+  left: 53%;
+  animation: pulse .6s infinite alternate;
+}
+
 @keyframes pulse {
     0% {
       transform: scale(1);
@@ -90,11 +107,18 @@
     transform: translateY(4px);
   }
 
-#noButton:hover {background-color: #ff4848}
+#noButton:hover {background-color: #fe5252}
 #noButton:active {
-    background-color: #ff4848;
-    box-shadow: 0 5px #ff4848;
+    background-color: #fe5252;
+    box-shadow: 0 5px #fe5252;
     transform: translateY(4px);
+  }
+
+#endedPlayAgain:hover {background-color: #41ff4d}
+#endedPlayAgain:active {
+      background-color: #41ff4d;
+      box-shadow: 0 5px #41ff4d;
+      transform: translateY(4px);
   }
 
 #caption, #menuPage {
@@ -239,6 +263,16 @@ body {
     left: 53%;
     max-width: 55%;
     max-height: 75%;
+}
+
+#downArrow {
+  transform: translate(-50%, -50%);
+  align-content: center;
+  position: absolute;
+  top: 47.5%;
+  left: 51.65%;
+  max-width: 10%;
+  max-height: 12%;
 }
 
 #gameTitle {

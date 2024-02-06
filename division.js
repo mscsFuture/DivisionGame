@@ -98,6 +98,12 @@ function switchPage(fromPage, toPage) {
   yesButton.addEventListener('click', function() {    // if yes button is clicked
       restartGame();                                  // restart the game
   });
+
+  // define the 'play again button'
+  const playAgain = document.getElementById('endedPlayAgain');
+  playAgain.addEventListener('click', function() {    // if play again button is clicked
+      restartGame();                                  // restart the game
+  });
   
   // define the 'no button' NO BUTTON IS NOW THE RECAP BUTTON
   const noButton = document.getElementById('noButton');
@@ -112,38 +118,38 @@ function switchPage(fromPage, toPage) {
 
       // add color coordinating to the dividend text on the recap page
       if (dividend.textContent.length === 1) {
-        dividendText += `<span style="color: ${'blue'};">${dividend.textContent[0]}</span>`
+        dividendText += `<span style="color: #1b07f2;">${dividend.textContent[0]}</span>`
       }
       if (dividend.textContent.length === 2) {
-        dividendText += `<span style="color: ${'red'};">${dividend.textContent[0]}</span>`
-        dividendText += `<span style="color: ${'blue'};">${dividend.textContent[1]}</span>`
+        dividendText += `<span style="color: #8200d9;">${dividend.textContent[0]}</span>`
+        dividendText += `<span style="color: #1b07f2;">${dividend.textContent[1]}</span>`
       }
       if (dividend.textContent.length === 3) {
-        dividendText += `<span style="color: ${'green'};">${dividend.textContent[0]}</span>`
-        dividendText += `<span style="color: ${'red'};">${dividend.textContent[1]}</span>`
-        dividendText += `<span style="color: ${'blue'};">${dividend.textContent[2]}</span>`
+        dividendText += `<span style="color: #da0088;">${dividend.textContent[0]}</span>`
+        dividendText += `<span style="color: #8200d9;">${dividend.textContent[1]}</span>`
+        dividendText += `<span style="color: #1b07f2;">${dividend.textContent[2]}</span>`
       }
       if (dividend.textContent.length === 4) {
-        dividendText += `<span style="color: ${'yellow'};">${dividend.textContent[0]}</span>`
-        dividendText += `<span style="color: ${'green'};">${dividend.textContent[1]}</span>`
-        dividendText += `<span style="color: ${'red'};">${dividend.textContent[2]}</span>`
-        dividendText += `<span style="color: ${'blue'};">${dividend.textContent[3]}</span>`
+        dividendText += `<span style="color: #e60031;">${dividend.textContent[0]}</span>`
+        dividendText += `<span style="color: #da0088;">${dividend.textContent[1]}</span>`
+        dividendText += `<span style="color: #8200d9;">${dividend.textContent[2]}</span>`
+        dividendText += `<span style="color: #1b07f2;">${dividend.textContent[3]}</span>`
       }
 
       // add color to the divisor text on the recap page
       if (divisor.textContent.length === 1) {
-        divisorText += `<span style="color: ${'blue'};">${divisor.textContent[0]}</span>`
+        divisorText += `<span style="color: #1b07f2;">${divisor.textContent[0]}</span>`
       }
       if (divisor.textContent.length === 2) {
-        divisorText += `<span style="color: ${'red'};">${divisor.textContent[0]}</span>`
-        divisorText += `<span style="color: ${'blue'};">${divisor.textContent[1]}</span>`
+        divisorText += `<span style="color: #8200d9;">${divisor.textContent[0]}</span>`
+        divisorText += `<span style="color: #1b07f2;">${divisor.textContent[1]}</span>`
       }
 
       // display a recap of the problem that was just solved
       element.innerHTML = "Dividend: " + dividendText 
         + '\n' + "Divisor: " + divisorText
         + '\n' + "Quotient: " + quotient.innerHTML.toString().substring(0, quotient.innerHTML.toString().length - 47) 
-        + '\n' + "Remainder: " + `<span style="color: ${'orange'};">${expectedRemainder}</span>`;
+        + '\n' + "Remainder: " + `<span style="color: ${'orange'}">${expectedRemainder}</span>`;
       console.log("Displayed problem recap page");
   });
     
@@ -273,22 +279,22 @@ function switchPage(fromPage, toPage) {
     let dividendText = '';
     console.log(dividendEl.textContent)
     if (dividendEl.textContent.length === 1) {
-      dividendText += `<span style="color: ${'blue'};">${dividendEl.textContent[0]}</span>`;
+      dividendText += `<span style="color: #1b07f2;">${dividendEl.textContent[0]}</span>`;
     }
     if (dividendEl.textContent.length === 2) {
-      dividendText += `<span style="color: ${'red'};">${dividendEl.textContent[0]}</span>`;
-      dividendText += `<span style="color: ${'blue'};">${dividendEl.textContent[1]}</span>`;
+      dividendText += `<span style="color: #8200d9;">${dividendEl.textContent[0]}</span>`;
+      dividendText += `<span style="color: #1b07f2;">${dividendEl.textContent[1]}</span>`;
     }
     if (dividendEl.textContent.length === 3) {
-      dividendText += `<span style="color: ${'green'};">${dividendEl.textContent[0]}</span>`;
-      dividendText += `<span style="color: ${'red'};">${dividendEl.textContent[1]}</span>`;
-      dividendText += `<span style="color: ${'blue'};">${dividendEl.textContent[2]}</span>`;
+      dividendText += `<span style="color: #da0088;">${dividendEl.textContent[0]}</span>`;
+      dividendText += `<span style="color: #8200d9;">${dividendEl.textContent[1]}</span>`;
+      dividendText += `<span style="color: #1b07f2;">${dividendEl.textContent[2]}</span>`;
     }
     if (dividendEl.textContent.length === 4) {
-      dividendText += `<span style="color: ${'yellow'};">${dividendEl.textContent[0]}</span>`;
-      dividendText += `<span style="color: ${'green'};">${dividendEl.textContent[1]}</span>`;
-      dividendText += `<span style="color: ${'red'};">${dividendEl.textContent[2]}</span>`;
-      dividendText += `<span style="color: ${'blue'};">${dividendEl.textContent[3]}</span>`;
+      dividendText += `<span style="color: #e60031;">${dividendEl.textContent[0]}</span>`;
+      dividendText += `<span style="color: #da0088;">${dividendEl.textContent[1]}</span>`;
+      dividendText += `<span style="color: #8200d9;">${dividendEl.textContent[2]}</span>`;
+      dividendText += `<span style="color: #1b07f2;">${dividendEl.textContent[3]}</span>`;
     }
     console.log("dividendText: " + dividendText);
 
@@ -296,22 +302,22 @@ function switchPage(fromPage, toPage) {
     let divisorText = '';
     console.log(divisorEl.textContent)
     if (divisorEl.textContent.length === 1) {
-      divisorText += `<span style="color: ${'blue'};">${divisorEl.textContent[0]}</span>`;
+      divisorText += `<span style="color: #1b07f2;">${divisorEl.textContent[0]}</span>`;
     }
     if (divisorEl.textContent.length === 2) {
-      divisorText += `<span style="color: ${'red'};">${divisorEl.textContent[0]}</span>`;
-      divisorText += `<span style="color: ${'blue'};">${divisorEl.textContent[1]}</span>`;
+      divisorText += `<span style="color: #8200d9;">${divisorEl.textContent[0]}</span>`;
+      divisorText += `<span style="color: #1b07f2;">${divisorEl.textContent[1]}</span>`;
     }
     if (divisorEl.textContent.length === 3) {
-      divisorText += `<span style="color: ${'green'};">${divisorEl.textContent[0]}</span>`;
-      divisorText += `<span style="color: ${'red'};">${divisorEl.textContent[1]}</span>`;
-      divisorText += `<span style="color: ${'blue'};">${divisorEl.textContent[2]}</span>`;
+      divisorText += `<span style="color: #da0088;">${divisorEl.textContent[0]}</span>`;
+      divisorText += `<span style="color: #8200d9;">${divisorEl.textContent[1]}</span>`;
+      divisorText += `<span style="color: #1b07f2;">${divisorEl.textContent[2]}</span>`;
     }
     if (divisorEl.textContent.length === 4) {
-      divisorText += `<span style="color: ${'yellow'};">${divisorEl.textContent[0]}</span>`;
-      divisorText += `<span style="color: ${'green'};">${divisorEl.textContent[1]}</span>`;
-      divisorText += `<span style="color: ${'red'};">${divisorEl.textContent[2]}</span>`;
-      divisorText += `<span style="color: ${'blue'};">${divisorEl.textContent[3]}</span>`;
+      divisorText += `<span style="color: #e60031;">${divisorEl.textContent[0]}</span>`;
+      divisorText += `<span style="color: #da0088;">${divisorEl.textContent[1]}</span>`;
+      divisorText += `<span style="color: #8200d9;">${divisorEl.textContent[2]}</span>`;
+      divisorText += `<span style="color: #1b07f2;">${divisorEl.textContent[3]}</span>`;
     }
     console.log("divisorText: " + divisorText);
 
@@ -347,29 +353,29 @@ function switchPage(fromPage, toPage) {
     // (if the dividend is 1014, the quotient text's length will be 4 and will increase from there to 5)
     // since no dividends have a length of 1, the if statement to include 1 can be skipped
     if (quotient.textContent.length === 2) {
-      quotientText += `<span style="color: ${'red'};">${quotient.textContent[0]}</span>`;
-      quotientText += `<span style="color: ${'blue'};">${quotient.textContent[1]}</span>`;
+      quotientText += `<span style="color: #8200d9;">${quotient.textContent[0]}</span>`;
+      quotientText += `<span style="color: #1b07f2;">${quotient.textContent[1]}</span>`;
     }
     if (quotient.textContent.length === 3) {
-      quotientText += `<span style="color: ${'green'};">${quotient.textContent[0]}</span>`;
-      quotientText += `<span style="color: ${'red'};">${quotient.textContent[1]}</span>`;
-      quotientText += `<span style="color: ${'blue'};">${quotient.textContent[2]}</span>`;
+      quotientText += `<span style="color: #da0088;">${quotient.textContent[0]}</span>`;
+      quotientText += `<span style="color: #8200d9;">${quotient.textContent[1]}</span>`;
+      quotientText += `<span style="color: #1b07f2;">${quotient.textContent[2]}</span>`;
     }
     if (quotient.textContent.length === 4) {
-      quotientText += `<span style="color: ${'yellow'};">${quotient.textContent[0]}</span>`;
-      quotientText += `<span style="color: ${'green'};">${quotient.textContent[1]}</span>`;
-      quotientText += `<span style="color: ${'red'};">${quotient.textContent[2]}</span>`;
-      quotientText += `<span style="color: ${'blue'};">${quotient.textContent[3]}</span>`;
+      quotientText += `<span style="color: #e60031;">${quotient.textContent[0]}</span>`;
+      quotientText += `<span style="color: #da0088;">${quotient.textContent[1]}</span>`;
+      quotientText += `<span style="color: #8200d9;">${quotient.textContent[2]}</span>`;
+      quotientText += `<span style="color: #1b07f2;">${quotient.textContent[3]}</span>`;
     }
     // this if statement handles a special case where the quotient text is longer than 4
     // this happens if the dividend is 4 digits long since it will increase to 5
     // if functionality to increase the number of digits in the dividend beyond 4 is implemented, more if statements to handle lengths above 5
     // will need to be added
     if (quotient.textContent.length === 5) {    
-      quotientText += `<span style="color: ${'yellow'};">${quotient.textContent[1]}</span>`;
-      quotientText += `<span style="color: ${'green'};">${quotient.textContent[2]}</span>`;
-      quotientText += `<span style="color: ${'red'};">${quotient.textContent[3]}</span>`;
-      quotientText += `<span style="color: ${'blue'};">${quotient.textContent[4]}</span>`;
+      quotientText += `<span style="color: #e60031;">${quotient.textContent[1]}</span>`;
+      quotientText += `<span style="color: #da0088;">${quotient.textContent[2]}</span>`;
+      quotientText += `<span style="color: #8200d9;">${quotient.textContent[3]}</span>`;
+      quotientText += `<span style="color: #1b07f2;">${quotient.textContent[4]}</span>`;
     }
 
     console.log(quotientText, "quotient text after adding color to it");
@@ -401,26 +407,26 @@ function switchPage(fromPage, toPage) {
       if (stepNum === 0) {                                                                
         if (totalDigits === 4) {                                                          
           if (answer.toString().length === 3) {                                           // if the dividend has 4 digits and display text has 3 digits
-            alignText += `<span style="color: ${'yellow'};">${digits[0]}</span>`;
-            alignText += `<span style="color: ${'green'};">${digits[1]}</span>`;
-            alignText += `<span style="color: ${'red'};">${digits[2]}</span>`;
+            alignText += `<span style="color: #e60031;">${digits[0]}</span>`;
+            alignText += `<span style="color: #da0088;">${digits[1]}</span>`;
+            alignText += `<span style="color: #8200d9;">${digits[2]}</span>`;
           }
           if (answer.toString().length === 2) {                                           // if the dividend has 4 digits and display text has 2 digits
-            alignText += `<span style="color: ${'green'};">${digits[0]}</span>`;
-            alignText += `<span style="color: ${'red'};">${digits[1]}</span>`;
+            alignText += `<span style="color: #da0088;">${digits[0]}</span>`;
+            alignText += `<span style="color: #8200d9;">${digits[1]}</span>`;
           }
         }
         if (totalDigits === 3) {
           if (answer.toString().length === 2) {                                           // if the dividend has 3 digits and display text has 2 digits
-            alignText += `<span style="color: ${'green'};">${digits[0]}</span>`;
-            alignText += `<span style="color: ${'red'};">${digits[1]}</span>`;
+            alignText += `<span style="color: #da0088;">${digits[0]}</span>`;
+            alignText += `<span style="color: #8200d9;">${digits[1]}</span>`;
           }
           if (answer.toString().length === 1) {                                           // if the dividend has 3 digits and the display text has 1 digit
-            alignText += `<span style="color: ${'red'};">${digits[0]}</span>`;
+            alignText += `<span style="color: #8200d9;">${digits[0]}</span>`;
           }
         }
         if (totalDigits === 2) {                                                          // if the dividend has 2 digits display text can only have 1 digit
-          alignText += `<span style="color: ${'red'};">${digits[0]}</span>`;
+          alignText += `<span style="color: #8200d9;">${digits[0]}</span>`;
         }
         
       }
@@ -429,24 +435,24 @@ function switchPage(fromPage, toPage) {
       if (stepNum === 1) {
         if (totalDigits === 4) {
           if (answer.toString().length === 2) {                                           // if the dividend has 4 digits and display text has 2 digits
-            alignText += `<span style="color: ${'green'};">${digits[0]}</span>`;
-            alignText += `<span style="color: ${'red'};">${digits[1]}</span>`;
+            alignText += `<span style="color: #da0088;">${digits[0]}</span>`;
+            alignText += `<span style="color: #8200d9;">${digits[1]}</span>`;
           }
           if (answer.toString().length === 1) {                                           // if the dividend has 4 digits and the display text has 1 digit
-            alignText += `<span style="color: ${'red'};">${digits[0]}</span>`;
+            alignText += `<span style="color: #8200d9;">${digits[0]}</span>`;
           }
         }
         if (totalDigits === 3) {  
           if (answer.toString().length === 2) {                                           // if the dividend has 3 digits and display text has 2 digits
-            alignText += `<span style="color: ${'green'};">${digits[0]}</span>`;
-            alignText += `<span style="color: ${'red'};">${digits[1]}</span>`;
+            alignText += `<span style="color: #da0088;">${digits[0]}</span>`;
+            alignText += `<span style="color: #8200d9;">${digits[1]}</span>`;
           }
           if (answer.toString().length === 1) {                                           // if the dividend has 3 digits and display text has 1 digit
-            alignText += `<span style="color: ${'red'};">${digits[0]}</span>`;
+            alignText += `<span style="color: #8200d9;">${digits[0]}</span>`;
           }
         }
         if (totalDigits === 2) {                                                          // if the dividend has 2 digits again display text can only have 1 digit
-          alignText += `<span style="color: ${'red'};">${digits[0]}</span>`;
+          alignText += `<span style="color: #8200d9;">${digits[0]}</span>`;
         }
       }
       // STEP THREE
@@ -454,39 +460,39 @@ function switchPage(fromPage, toPage) {
       if (stepNum === 2) {
         if (totalDigits === 4) {
           if (answer.toString().length === 3) {                                           // if the dividend has 4 digits and display text has 3 digits
-            alignText += `<span style="color: ${'green'};">${digits[0]}</span>`;
-            alignText += `<span style="color: ${'red'};">${digits[1]}</span>`;
-            alignText += `<span style="color: ${'blue'};">${digits[2]}</span>`;
+            alignText += `<span style="color: #da0088;">${digits[0]}</span>`;
+            alignText += `<span style="color: #8200d9;">${digits[1]}</span>`;
+            alignText += `<span style="color: #1b07f2;">${digits[2]}</span>`;
           }
           if (answer.toString().length === 2) {                                           // if the dividend has 4 digits and display text has 2 digits
-            alignText += `<span style="color: ${'red'};">${digits[0]}</span>`;
-            alignText += `<span style="color: ${'blue'};">${digits[1]}</span>`;
+            alignText += `<span style="color: #8200d9;">${digits[0]}</span>`;
+            alignText += `<span style="color: #1b07f2;">${digits[1]}</span>`;
           }
           if (answer.toString().length === 1) {                                           // if the dividend has 4 digits and display text has 1 digit
-            alignText += `<span style="color: ${'blue'};">${digits[0]}</span>`;
+            alignText += `<span style="color: #1b07f2;">${digits[0]}</span>`;
           }
         }
         if (totalDigits === 3) {
           if (answer.toString().length === 3) {                                           // if the dividend has 3 digits and display text has 3 digits
-            alignText += `<span style="color: ${'green'};">${digits[0]}</span>`;
-            alignText += `<span style="color: ${'red'};">${digits[1]}</span>`;
-            alignText += `<span style="color: ${'blue'};">${digits[2]}</span>`;
+            alignText += `<span style="color: #da0088;">${digits[0]}</span>`;
+            alignText += `<span style="color: #8200d9;">${digits[1]}</span>`;
+            alignText += `<span style="color: #1b07f2;">${digits[2]}</span>`;
           }
           if (answer.toString().length === 2) {                                           // if the dividend has 3 digits and display text has 2 digits
-            alignText += `<span style="color: ${'red'};">${digits[0]}</span>`;
-            alignText += `<span style="color: ${'blue'};">${digits[1]}</span>`;
+            alignText += `<span style="color: #8200d9;">${digits[0]}</span>`;
+            alignText += `<span style="color: #1b07f2;">${digits[1]}</span>`;
           }
           if (answer.toString().length === 1) {                                           // if the dividend has 3 digits and display text has 1 digit
-            alignText += `<span style="color: ${'blue'};">${digits[0]}</span>`;
+            alignText += `<span style="color: #1b07f2;">${digits[0]}</span>`;
           }
         }
         if (totalDigits === 2) {                                                          // if the dividend has 2 digits and display text has 2 digits
           if (answer.toString().length === 2) {
-            alignText += `<span style="color: ${'red'};">${digits[0]}</span>`;
-            alignText += `<span style="color: ${'blue'};">${digits[1]}</span>`;
+            alignText += `<span style="color: #8200d9;">${digits[0]}</span>`;
+            alignText += `<span style="color: #1b07f2;">${digits[1]}</span>`;
           }
           if (answer.toString().length === 1) {                                           // if the dividend has 2 digits and display text has 1 digit
-            alignText += `<span style="color: ${'blue'};">${digits[0]}</span>`;
+            alignText += `<span style="color: #1b07f2;">${digits[0]}</span>`;
           }
         }
       }
@@ -495,29 +501,29 @@ function switchPage(fromPage, toPage) {
       if (stepNum === 3) {
         if (totalDigits === 4) {
           if (answer.toString().length === 2) {                                           // if the dividend has 4 digits and display text has 2 digits
-            alignText += `<span style="color: ${'red'};">${digits[0]}</span>`;
-            alignText += `<span style="color: ${'blue'};">${digits[1]}</span>`;
+            alignText += `<span style="color: #8200d9;">${digits[0]}</span>`;
+            alignText += `<span style="color: #1b07f2;">${digits[1]}</span>`;
           }
           if (answer.toString().length === 1) {                                           // if the dividend has 4 digits and display text has 1 digit
-            alignText += `<span style="color: ${'blue'};">${digits[0]}</span>`;
+            alignText += `<span style="color: #1b07f2;">${digits[0]}</span>`;
           }
         }
         if (totalDigits === 3) {                                                
           if (answer.toString().length === 2) {                                           // if the dividend has 3 digits and display text has 2 digits
-            alignText += `<span style="color: ${'red'};">${digits[0]}</span>`;
-            alignText += `<span style="color: ${'blue'};">${digits[1]}</span>`;
+            alignText += `<span style="color: #8200d9;">${digits[0]}</span>`;
+            alignText += `<span style="color: #1b07f2;">${digits[1]}</span>`;
           }
           if (answer.toString().length === 1) {                                           // if the dividend has 3 digits and display text has 1 digit
-            alignText += `<span style="color: ${'blue'};">${digits[0]}</span>`; 
+            alignText += `<span style="color: #1b07f2;">${digits[0]}</span>`; 
           }
         }
         if (totalDigits === 2) {
           if (answer.toString().length === 2) {                                           // if the dividend has 2 digits and display text has 2 digits
-            alignText += `<span style="color: ${'red'};">${digits[0]}</span>`;
-            alignText += `<span style="color: ${'blue'};">${digits[1]}</span>`;
+            alignText += `<span style="color: #8200d9;">${digits[0]}</span>`;
+            alignText += `<span style="color: #1b07f2;">${digits[1]}</span>`;
           }
           if (answer.toString().length === 1) {                                           // if the dividend has 2 digits and display text has 1 digit
-            alignText += `<span style="color: ${'blue'};">${digits[0]}</span>`;
+            alignText += `<span style="color: #1b07f2;">${digits[0]}</span>`;
           }
         }
       }
@@ -609,8 +615,8 @@ function switchPage(fromPage, toPage) {
   var offset;                 // keeps track of how far to the right the next digit will be aligned
   var firstMultiply = 0;      // keeps track of whether or not this is the first time a mult. result is displayed
   var firstSubtract = 0;      // keeps track of whether or not this is the first time a sub. result is displayed
-  var firstExpSub;            // keeps track of what the first sub. result was
-  var firstExpMult;           // keeps track of what the first mult. result was
+  var firstExpSub = 0;        // keeps track of what the first sub. result was
+  var firstExpMult = 0;       // keeps track of what the first mult. result was
   // storing the results of the first mult. result and sub. result are useful for determing where the next thing below it should go
   // since the scope of the numbers used in this game is small enough, we only need to store the first result
   // if the scope was changed to include more numbers, a mechanism for storing the second or third mult. and sub. results may be needed
@@ -618,7 +624,7 @@ function switchPage(fromPage, toPage) {
   // displays the result of a multiplication
   function displayMultiplicationResult() {
     console.log(offset, "alignment offset before any checks to move it"); 
-
+    console.log(firstExpSub, "first exp sub");
     // checks to move the offset:
 
     // if it is the first mult. result, and length of the mult. result is 1, but the length of the dividend is greater than 2
@@ -626,19 +632,23 @@ function switchPage(fromPage, toPage) {
       offset ++;
     }
     // if it is the first mult. result, and the length of the mult. result is 2, but the length of the dividend is 4
-    if (firstMultiply === 0 && expectedMultiply.toString().length === 2 && dividend.toString().length === 4) {
+    else if (firstMultiply === 0 && expectedMultiply.toString().length === 2 && dividend.toString().length === 4) {
       offset ++;
     }
     // if the length of the mult. result is 1 and the length of the thing subtracted (above it) is 2
-    if (expectedMultiply.toString().length === 1 && expectedSubtract.toString().length === 2) {
+    else if (expectedMultiply.toString().length === 1 && expectedSubtract.toString().length === 2) {
       offset ++;
     }
     // if the length of the mult. result is 1, and something has been brought down
-    if (expectedMultiply.toString().length === 1 && firstBringDown === 1) {
+    else if (expectedMultiply.toString().length === 1 && firstBringDown === 1) {
+      offset ++;
+    }
+    // if the first sub. result has 2 digits plus 1 digit brough down for 3, and the mult. result has 2 digits
+    else if (firstExpSub.toString().length === 2 && firstBringDown === 1 && expectedMultiply.toString().length === 2) {
       offset ++;
     }
     // if the length of the mult. result is 1, and the length of the thing subtracted (above it) is 3
-    if (expectedMultiply.toString().length === 1 && expectedSubtract.toString().length === 3) {
+    else if (expectedMultiply.toString().length === 1 && expectedSubtract.toString().length === 3) {
       offset += 2;
     }
     if (firstMultiply === 0) {              // if it is the first time there is a mult. result displayed
@@ -673,9 +683,8 @@ function switchPage(fromPage, toPage) {
   
   function displaySubtractionResult() {
     console.log(offset, "alignment offset before any checks to move it");
-    
+    console.log(offset, "offset at start");
     // checks to move the offset:
-
     // if the sub. result has a length of 1, and the mult. result (above it) has a length of 2
     if (expectedSubtract.toString().length === 1 && expectedMultiply.toString().length === 2) {
       offset ++;
@@ -688,10 +697,16 @@ function switchPage(fromPage, toPage) {
     if (expectedSubtract.toString().length === 2 && expectedMultiply.toString().length === 3) {
       offset ++;
     }
+    // if, on the second time performing the subtraction, the sub. result is 1 digit longer than the previous mult. result
+    if (firstSubtract === 1 && expectedSubtract.toString().length === 2 && expectedMultiply.toString().length === 1) {
+      offset = offset - 1;
+    }
     if (firstSubtract === 0) {            // if this is the first subtraction being displayed
       firstExpSub = expectedSubtract;     // store the first subtraction
       firstSubtract ++;                   // change the variable so it is no longer the first subtraction
     }
+
+    console.log(offset, "offset after checks");
 
     console.log(offset, "alignment offset after checks to move it");
 
@@ -720,10 +735,22 @@ function switchPage(fromPage, toPage) {
    *
    * THE ARGUMENT IS IN `expectedBringDown` AND IS ALWAYS A SINGLE DIGIT
    */
+  document.getElementById('downArrow').style.display = 'none';
   var firstBringDown = 0;   // keeps track of whether this is the first time a digit has been brought down or not
   function displayBringDownDigit() {
+    var e = document.getElementById('downArrow');   // variable for the down arrow
+    // 51.65%
+    // the down arrow is pre-positioned for the dividend having 3 digits so we only need to change it if the dividend has 2 or 4 digits
+    if (dividend.toString().length === 2) {   // if dividend has 2 digits, move arrow to the left
+      e.style.left = '48.65%';
+    }
+    if (dividend.toString().length === 4) {   // if dividend has 4 digits, move arrow to the right
+      e.style.left = '54.65%';
+    }
+    
     console.log(offset, "offset for alignment");
-    document.getElementById('answer').innerHTML += (`<span style="color: ${'blue'};">${expectedBringDown}</span>` + '\n');
+    document.getElementById('answer').innerHTML += (`<span style="color: #1b07f2;">${expectedBringDown}</span>` + '\n');
+    document.getElementById('downArrow').style.display = 'block';
     firstBringDown = 1;   // change this to one since it will no longer be the first time this is called
     console.log(expectedBringDown, "the expected bring down digit was entered");
   }
@@ -903,3 +930,5 @@ function switchPage(fromPage, toPage) {
   // 1196, 17 FIXED
   // 342, 19 FIXED
   // 870, 15 FIXED
+  // 130, 12 fixed???
+  // 1443, 19 FIXED
