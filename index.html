@@ -2,17 +2,19 @@
 <html>
   <head>
     <title>Long Division Helper</title>
-    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/styles.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/menuPage-styles.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/gamePage-styles.css" />
   </head>
   <body>
-    <div class="background-image"></div>
+    <!-- <div class="background-image"></div> -->
 
     <section id="menuPage">
-      <div id="content">
-        <h2 id="text-shadows">Long Division Helper</h2>
+      <div id="menuPageContent">
+        <h2 id="text-shadows">Long Division <br> Helper</h2>
       </div>
       <nav>
-        <button id="gameButton">Press Me to Play!</button>
+        <button id="startButton" onclick="gameInit()">Press Me to Play!</button>
       </nav>
     </section>
 
@@ -26,40 +28,59 @@
     <section id="gamePage" style="display: none">
       <div id="gameTitle"></div>
       <h2 id="shadows"></h2>
-      <img id="divisorSymbol" src="images/divisor-sign.png" alt="Image" />
-      <p id="dividend">dividend</p>
-      <p id="divisor">divisor</p>
-      <p id="quotient"></p>
-      <input id="textInput" type="text" onkeydown="handleKeyPress(event)">
-      <p id="suggestions"></p>
-      <p id="promptRemainder"></p>
-      <p id="subtractor"></p>
-      <p id="subtractorans"></p>
-      <p id="bringdown"></p>
-      <p id="output"></p>
-      <p id="iscorrect"></p>
-      <p id="playagain"></p>
-
-      <nav>
-        <button id="yesButton">Yes</button>
-        <button id="noButton">Recap</button>
-      </nav>
       
+      <div class="responseBox" id="responseBox">
+        <input class= "responseText" id="responseText" type="text" autocomplete="off">
+      </div>
 
-      <div id="minus_sign"></div>
-      <div id="operation_bar"></div>
-      <p class="text" id="answer"></p>
+      <div class="prompt-container">
+        <div class="prompt" id="prompt"></div>
+      </div>
+      <div id="divisionSymbolVerticalBar" class="division-symbol-vertical-bar"></div>
+      <div id="divisionSymbolHorizontalBar" class="division-symbol-horizontal-bar"></div>
 
-      <div id="buttons">
-        <button id="q1" onclick="checkButton(States.ExpectingBringDown)">Bring down:   <strong>↓</strong></button>
-        <button id="q2" onclick="checkButton(States.ExpectingRemainder)">Remainder:   <strong>R</strong></button>
-        <button id="q3" onclick="checkButton(States.ExpectingDivision)">Divide:   <strong>/</strong></button>
-        <button id="q4"onclick="checkButton(States.ExpectingMultiplication)">Multiply:   <strong>*</strong></button>
-        <button id="q5"onclick="checkButton(States.ExpectingSubtraction)">Subtract:   <strong>-</strong></button>
+      <!-- <div class="division-symbol-horizontal-bar"></div> -->
+      <div id="arrowHeadLeft" class="bring-down-arrow-head-left"></div>
+      <div id="arrowHeadRight" class="bring-down-arrow-head-right"></div>
+      <div id="arrowTail" class="bring-down-arrow-tail"></div>
+
+      <div class="button-container-wrapper">
+        <div id="buttonContainer" class="button-container">
+          <button id="divideBtn" onclick="playerSelectionHandler('divide')">Divide:   <strong>/</strong></button>
+          <button id="multiplyBtn"onclick="playerSelectionHandler('multiply')">Multiply:   <strong>*</strong></button>
+          <button id="subtractBtn"onclick="playerSelectionHandler('subtract')">Subtract:   <strong>-</strong></button>
+          <button id="bringDownBtn" onclick="playerSelectionHandler('bringdown')">Bring down:   <strong>↓</strong></button>
+          <button id="repeatBtn" onclick="playerSelectionHandler('repeat')">Repeat</button>
+          <button id="remainderBtn" onclick="playerSelectionHandler('remainder')">Remainder: <strong>R</strong></button>
+        </div>
+      </div>
+      
+      <div id="finalAnswerContainerWrapper" class="final-answer-container-wrapper">
+        <div id="finalAnswerContainer" class="final-answer-container">
+          <div class="header">Summary</div>
+          
+          <div class="text-wrapper">
+            <div id="dividendElement" class="text"></div>
+          </div>
+          <div class="text-wrapper">
+            <div class="text">÷</div>
+            <div id="divisorElement" class="text"></div>
+          </div>
+          <div class="equation-bar"></div>
+          <div class="text-wrapper">
+            <div class="text">=&nbsp;</div>
+            <div id="answerElement" class="text"></div>
+            <div id="remainderElement" class="text"></div>
+          </div>
+
+          <button id="playAgainBtn" onclick="resetGame()">Play Again?</button>
+
+        </div>
       </div>
 
     </section>
 
-    <script src="division.js"></script>
+    <script src="gameLogic.js"></script>
+    <script src="promptResponses.js"></script>
   </body>
 </html>
