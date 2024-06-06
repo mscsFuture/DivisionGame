@@ -23,7 +23,7 @@ var responseBox = document.getElementById("responseBox");
 var userInputForm = document.querySelector("#responseText");
 var currentStep;
 userInputForm.addEventListener("keyup", function (event) {
-	if(event.key === 'Enter') {
+	if (event.key === 'Enter') {
 		console.log('Enter key was pressed');
 		switch (currentStep) {
 			case "divide":
@@ -60,11 +60,11 @@ function gameInit() {
 	if (DEBUG) console.log("Entering function gameInit()...");
 	//switch pages
 	menuPage.style.display = 'none';
-    gamePage.style.display = 'block';
+	gamePage.style.display = 'block';
 
 	divisor = getRandomInt(20) + 1;
-    dividend = divisor * (getRandomInt(75) + 10)
-                   + (Math.random() < 0.45 ? getRandomInt(20) : 0);
+	dividend = divisor * (getRandomInt(75) + 10)
+		+ (Math.random() < 0.45 ? getRandomInt(20) : 0);
 
 	console.log("Divisor: " + divisor);
 	console.log("Dividend: " + dividend);
@@ -79,11 +79,11 @@ function gameInit() {
 		number = Math.floor(number / 10);
 		var div = document.createElement('div');
 		div.classList.add("digit", placeValueStyles[placeValue]);
-		div.style.left = "calc(" + originX + " - " + "(" + gridSpacing + " * " + (placeValue+1) + "))";
+		div.style.left = "calc(" + originX + " - " + "(" + gridSpacing + " * " + (placeValue + 1) + "))";
 		div.style.top = originY;
 		div.innerHTML = lowestPlaceValue;
 		document.body.appendChild(div);
-		placeValue++;	
+		placeValue++;
 	}
 
 	//DISPLAY THE DIVIDEND
@@ -96,21 +96,73 @@ function gameInit() {
 		number = Math.floor(number / 10);
 		var div = document.createElement('div');
 		div.classList.add("digit", placeValueStyles[placeValue]);
-		div.style.left = "calc(" + originX + " + " + "(" + gridSpacing + " * " + (numDividendDigits-placeValue-1) + "))";
+		div.style.left = "calc(" + originX + " + " + "(" + gridSpacing + " * " + (numDividendDigits - placeValue - 1) + "))";
 		div.style.top = originY;
 		div.innerHTML = lowestPlaceValue;
-		div.id = "pv" + placeValue; 
+		div.id = "pv" + placeValue;
 		document.body.appendChild(div);
-		placeValue++;	
+		placeValue++;
 	}
 
 	//PROMPT THE USER
 	updatePrompt("What should you do first?");
 	expectedOperation = "divide";
-	
+
 
 	if (DEBUG) console.log("...Leaving function gameInit()");
 }
+
+
+function speakTxt(operation) {
+	var speech = new SpeechSynthesisUtterance(operation);
+	window.speechSynthesis.speak(speech);
+}
+
+var delay = function (btnElement, callback) {
+	var timeout = null;
+	console.log("btnElement" + btnElement);
+
+	if (btnElement != null) {
+		btnElement.onmouseover = function () {
+			// Set timeout to be a timer which will invoke callback after 1s
+			timeout = setTimeout(callback, 500);
+		};
+
+		btnElement.onmouseout = function () {
+			// Clear any timers set to timeout
+			clearTimeout(timeout);
+		}
+	}
+
+};
+
+delay(document.getElementById('divideBtn'), function () {
+	var speech = new SpeechSynthesisUtterance('divide');
+	window.speechSynthesis.speak(speech);
+});
+delay(document.getElementById('multiplyBtn'), function () {
+	var speech = new SpeechSynthesisUtterance('multiply');
+	window.speechSynthesis.speak(speech);
+});
+delay(document.getElementById('subtractBtn'), function () {
+	var speech = new SpeechSynthesisUtterance('subtract');
+	window.speechSynthesis.speak(speech);
+});
+delay(document.getElementById('bringdownBtn'), function () {
+	var speech = new SpeechSynthesisUtterance('bring down');
+	window.speechSynthesis.speak(speech);
+});
+delay(document.getElementById('repeatBtn'), function () {
+	var speech = new SpeechSynthesisUtterance('repeat');
+	window.speechSynthesis.speak(speech);
+});
+delay(document.getElementById('remainderBtn'), function () {
+	var speech = new SpeechSynthesisUtterance('remainder');
+	window.speechSynthesis.speak(speech);
+});
+
+
+
 
 
 function playerSelectionHandler(selection) {
@@ -119,32 +171,32 @@ function playerSelectionHandler(selection) {
 	//sets global selection variable which in gameMain() to progress the game
 	switch (selection) {
 		case "divide":
-			if(checkValidSelection(selection, expectedOperation)) {
+			if (checkValidSelection(selection, expectedOperation)) {
 				initDivisionStep();
 			}
 			break;
 		case "multiply":
-			if(checkValidSelection(selection, expectedOperation)) {
+			if (checkValidSelection(selection, expectedOperation)) {
 				initMultiplicationStep();
 			}
 			break;
 		case "subtract":
-			if(checkValidSelection(selection, expectedOperation)) {
+			if (checkValidSelection(selection, expectedOperation)) {
 				initSubtractionStep();
 			}
 			break;
 		case "bringdown":
-			if(checkValidSelection(selection, expectedOperation)) {
+			if (checkValidSelection(selection, expectedOperation)) {
 				initBringDownStep();
 			}
 			break;
 		case "repeat":
-			if(checkValidSelection(selection, expectedOperation)) {
+			if (checkValidSelection(selection, expectedOperation)) {
 				repeatStep();
 			}
 			break;
 		case "remainder":
-			if(checkValidSelection(selection, expectedOperation)) {
+			if (checkValidSelection(selection, expectedOperation)) {
 				initRemainderStep();
 			}
 			break;
@@ -154,11 +206,11 @@ function playerSelectionHandler(selection) {
 
 function checkValidSelection(selection, expectedOperation) {
 	if (DEBUG) console.log("Entering function checkValidSelection()...");
-	if(selection != expectedOperation) {
+	if (selection != expectedOperation) {
 		updatePrompt("Not quite! Please try again!");
 		return false;
 	}
-	else if(selection == expectedOperation) {
+	else if (selection == expectedOperation) {
 		return true;
 	}
 	if (DEBUG) console.log("...Leaving function checkValidSelection()");
@@ -169,6 +221,12 @@ function updatePrompt(text) {
 	var prompt = document.getElementById("prompt");
 	prompt.innerHTML = text;
 
+
+	var promptTxt = prompt.textContent;
+	var speech = new SpeechSynthesisUtterance(promptTxt);
+	window.speechSynthesis.speak(speech);
+
+
 	if (DEBUG) console.log("...Leaving function updatePrompt()");
 }
 
@@ -177,7 +235,14 @@ function updateSecondaryPrompt(text) {
 	var prompt = document.getElementById("prompt");
 	prompt.innerHTML = text;
 
+
+	var promptTxt = prompt.textContent;
+	var speech = new SpeechSynthesisUtterance(promptTxt);
+	window.speechSynthesis.speak(speech);
+
+
 	if (DEBUG) console.log("...Leaving function updateSecondaryPrompt()");
+
 }
 
 var buttonsEnabled = true;
@@ -186,7 +251,7 @@ function toggleOperationButtons() {
 	var buttonContainer = document.getElementById("buttonContainer");
 	var buttons = buttonContainer.querySelectorAll("button");
 
-	for(i=0; i<buttons.length; i++) {
+	for (i = 0; i < buttons.length; i++) {
 		buttons[i].disabled = !(buttons[i].disabled);
 	}
 
@@ -195,8 +260,8 @@ function toggleOperationButtons() {
 }
 
 function positionResponseBox(shiftX, shiftY, width) {
-	
-	var top = "calc(" + originY + " + " + "(" + shiftY + " * "  + gridSpacing  + "))";
+
+	var top = "calc(" + originY + " + " + "(" + shiftY + " * " + gridSpacing + "))";
 	responseBox.style.top = top;
 
 	var left = "calc(" + originX + " + " + "(" + gridSpacing + " * " + (shiftX) + "))";
@@ -212,7 +277,7 @@ function positionDigit(shiftX, shiftY, value, style) {
 	var div = document.createElement('div');
 	div.classList.add("digit", style);
 
-	var top = "calc(" + originY + " + " + "(" + shiftY + " * "  + gridSpacing  + "))";
+	var top = "calc(" + originY + " + " + "(" + shiftY + " * " + gridSpacing + "))";
 	div.style.top = top;
 
 	var left = "calc(" + originX + " + " + "(" + gridSpacing + " * " + (shiftX) + "))";
@@ -228,7 +293,7 @@ function positionSubtractionSymbol(shiftX, shiftY) {
 	var subSymbolContainer = document.createElement('div');
 	subSymbolContainer.classList.add("subtraction-symbol-container");
 
-	var top = "calc(" + originY + " + " + "(" + shiftY + " * "  + gridSpacing  + "))";
+	var top = "calc(" + originY + " + " + "(" + shiftY + " * " + gridSpacing + "))";
 	subSymbolContainer.style.top = top;
 
 	var left = "calc(" + originX + " + " + "(" + gridSpacing + " * " + (shiftX) + "))";
@@ -249,7 +314,7 @@ function positionSubtractionBar(shiftX, shiftY, width) {
 	var subBar = document.createElement('div');
 	subBar.classList.add("subtraction-bar");
 
-	var top = "calc(" + originY + " + " + "(" + shiftY + " * "  + gridSpacing  + "))";
+	var top = "calc(" + originY + " + " + "(" + shiftY + " * " + gridSpacing + "))";
 	subBar.style.top = top;
 
 	var left = "calc(" + originX + " + " + "(" + gridSpacing + " * " + (shiftX) + "))";
@@ -272,7 +337,7 @@ function positionBringDownArrow(shiftX, shiftY) {
 	leftHead.classList.add("bring-down-arrow-head-left");
 
 	top = "calc(" + originY + " + 1.6 * " + shiftY + " * " + gridSpacing + ")";
-	left = "calc(" + originX + " + (0.5  + " + shiftX + ")  * " + gridSpacing +  " - " + tailWidth + " - " + tailWidth + "/2 - 1px)";
+	left = "calc(" + originX + " + (0.5  + " + shiftX + ")  * " + gridSpacing + " - " + tailWidth + " - " + tailWidth + "/2 - 1px)";
 
 	leftHead.style.left = left;
 	leftHead.style.top = top;
@@ -280,10 +345,10 @@ function positionBringDownArrow(shiftX, shiftY) {
 
 	console.log("ARROW-LEFT, left: " + left);
 	console.log("ARROW-LEFT, top: " + top);
-	
+
 	document.body.appendChild(leftHead);
 
-	var rightHead =  document.createElement('div');
+	var rightHead = document.createElement('div');
 	rightHead.classList.add("bring-down-arrow-head-right");
 
 	top = "calc(" + originY + " + 1.6 * " + shiftY + " * " + gridSpacing + ")";
@@ -316,7 +381,7 @@ function positionBringDownArrow(shiftX, shiftY) {
 	tail.style.display = "block";
 
 	document.body.appendChild(tail);
-	
+
 }
 
 
@@ -334,9 +399,9 @@ function initDivisionStep() {
 
 	numDividendDigits = dividend.toString().length;
 	digitCount = 1;
-	
-	if(firstpass) {
-		pseudoDividend = Math.floor(dividend/(10**(numDividendDigits-digitCount)));
+
+	if (firstpass) {
+		pseudoDividend = Math.floor(dividend / (10 ** (numDividendDigits - digitCount)));
 		console.log("psuedoDividend: " + pseudoDividend);
 	}
 
@@ -345,7 +410,7 @@ function initDivisionStep() {
 	updateSecondaryPrompt(getPositiveExclamation() + prompt);
 
 	positionResponseBox(quotientShiftRight, -1, 1);
-	
+
 
 	if (DEBUG) console.log("...Leaving function initDivisionStep()");
 }
@@ -354,25 +419,25 @@ function executeDivisionStep() {
 	if (DEBUG) console.log("Entering function executeDivisionStep()...");
 	var userResponse = parseInt(userInputForm.value); //grab user input from the userInputForm field
 	userInputForm.value = ""; //reset user input form
-	correctResponse = Math.floor(pseudoDividend/divisor); //calculate the correct response
-	
+	correctResponse = Math.floor(pseudoDividend / divisor); //calculate the correct response
+
 	console.log("UserReponse: " + userResponse);
 	console.log("CorrectResponse: " + correctResponse);
 
-	if(userResponse != correctResponse) { //user did not correctly answer question so we need to ask again
+	if (userResponse != correctResponse) { //user did not correctly answer question so we need to ask again
 		updateSecondaryPrompt("Sorry, not quite! " + prompt);
 		userInputForm.value = ""; //reset user input form
 		if (DEBUG) console.log("...Leaving function executeDivisionStep()");
 		return;
 	}
 
-	positionDigit(quotientShiftRight, -1, correctResponse, placeValueStyles[numDividendDigits-quotientShiftRight-1]);
+	positionDigit(quotientShiftRight, -1, correctResponse, placeValueStyles[numDividendDigits - quotientShiftRight - 1]);
 	digitCount++;
 	quotientShiftRight++;
 
 	/* divisor did not fit into psuedodividend so we need to look at next place value and ask again */
-	if(correctResponse == 0 && firstpass) { 
-		pseudoDividend = Math.floor(dividend/(10**(numDividendDigits-digitCount)));
+	if (correctResponse == 0 && firstpass) {
+		pseudoDividend = Math.floor(dividend / (10 ** (numDividendDigits - digitCount)));
 		positionResponseBox(quotientShiftRight, -1, 1);
 		prompt = "Now, how many times does " + divisor + " go into " + pseudoDividend + "?";
 		updateSecondaryPrompt(getPositiveExclamation() + prompt);
@@ -388,13 +453,13 @@ function executeDivisionStep() {
 }
 
 function terminateDivisionStep() {
-		responseBox.style.display = "none";
-		toggleOperationButtons();
+	responseBox.style.display = "none";
+	toggleOperationButtons();
 
-		expectedOperation = "multiply";
-		selection = "";
+	expectedOperation = "multiply";
+	selection = "";
 
-		updatePrompt("Which step is next?");
+	updatePrompt("Which step is next?");
 }
 
 
@@ -419,7 +484,7 @@ function initMultiplicationStep() {
 	// numDividendDigits = dividend.toString().length;
 	// digitCount = 1;
 
-	product = Math.floor(factor1*factor2); //calculate the correct response
+	product = Math.floor(factor1 * factor2); //calculate the correct response
 
 	var responseBoxWidth = product.toString().length;
 	console.log("responseBoxWidth: " + responseBoxWidth);
@@ -430,8 +495,8 @@ function initMultiplicationStep() {
 	// }
 	// positionResponseBox(shiftRight, shiftDown, responseBoxWidth);
 	shiftRight = quotientShiftRight;
-	positionResponseBox(shiftRight-responseBoxWidth, shiftDown, responseBoxWidth);
-	
+	positionResponseBox(shiftRight - responseBoxWidth, shiftDown, responseBoxWidth);
+
 
 	if (DEBUG) console.log("...Leaving function initMultiplicationStep()");
 }
@@ -441,7 +506,7 @@ function executeMultiplicationStep() {
 	var userResponse = parseInt(userInputForm.value); //grab user input from the userInputForm field
 	userInputForm.value = ""; //reset user input form
 
-	if(userResponse != product) { //user did not correctly answer question so we need to ask again
+	if (userResponse != product) { //user did not correctly answer question so we need to ask again
 		updateSecondaryPrompt("Sorry, not quite! " + prompt);
 		userInputForm.value = ""; //reset user input form
 		if (DEBUG) console.log("...Leaving function executeMultiplicationStep()");
@@ -459,14 +524,14 @@ function executeMultiplicationStep() {
 		// 	positionDigit(shiftX, shiftDown, productDigitsArr[i], placeValueStyles[numDividendDigits-1-shiftX]);
 		// }
 
-		for(i=0; i < numDigits; i++) {
-			positionDigit(shiftRight-1-i, shiftDown, productDigitsArr[numDigits-1-i], placeValueStyles[numDividendDigits-shiftRight+i]);
-			console.log(productDigitsArr[numDigits-1-i]);
+		for (i = 0; i < numDigits; i++) {
+			positionDigit(shiftRight - 1 - i, shiftDown, productDigitsArr[numDigits - 1 - i], placeValueStyles[numDividendDigits - shiftRight + i]);
+			console.log(productDigitsArr[numDigits - 1 - i]);
 		}
 		terminateMultiplicationStep();
 	}
 
-	
+
 
 	if (DEBUG) console.log("...Leaving function executeMultiplicationStep()");
 }
@@ -492,7 +557,7 @@ function initSubtractionStep() {
 
 	currentStep = "subtract";
 	toggleOperationButtons();
-	
+
 	subtrahend = product; //the minuend should be the product from the mulitplication step
 	minuend = pseudoDividend; //the subtrahend should be pseudoDividend (the part of the dividend that aligns with the minuend, assigned in the division step)
 
@@ -500,7 +565,7 @@ function initSubtractionStep() {
 	prompt = "What is " + minuend + " minus " + subtrahend + "?";
 	updateSecondaryPrompt(getPositiveExclamation() + prompt);
 
-	difference = Math.floor(minuend-subtrahend); //calculate the correct response
+	difference = Math.floor(minuend - subtrahend); //calculate the correct response
 	console.log("difference: " + difference);
 
 	console.log("PRODUCT: " + product);
@@ -508,11 +573,11 @@ function initSubtractionStep() {
 	console.log("SHIFTRIGHT: " + shiftRight);
 	// console.log("SHIFT")
 
-	
+
 	shiftDown++;
 
 	var responseBoxWidth = difference.toString().length;
-	positionResponseBox(shiftRight-responseBoxWidth, shiftDown, responseBoxWidth);
+	positionResponseBox(shiftRight - responseBoxWidth, shiftDown, responseBoxWidth);
 
 	positionSubtractionSymbol(shiftRight - minuend.toString().length - 1, shiftDown - 1);
 	positionSubtractionBar(shiftRight - minuend.toString().length, shiftDown, minuend.toString().length);
@@ -532,7 +597,7 @@ function executeSubtractionStep() {
 	var userResponse = parseInt(userInputForm.value); //grab user input from the userInputForm field
 	userInputForm.value = ""; //reset user input form
 
-	if(userResponse != difference) { //user did not correctly answer question so we need to ask again
+	if (userResponse != difference) { //user did not correctly answer question so we need to ask again
 		updateSecondaryPrompt("Sorry, not quite! " + prompt);
 		userInputForm.value = ""; //reset user input form
 		if (DEBUG) console.log("...Leaving function executeSubtractionStep()");
@@ -545,14 +610,14 @@ function executeSubtractionStep() {
 		var differenceDigitsArr = differenceDigits.map(Number);
 		var numDifferenceDigits = differenceDigitsArr.length;
 
-		for(i=0; i < numDifferenceDigits; i++) {
-			positionDigit(shiftRight-1-i, shiftDown, differenceDigitsArr[numDifferenceDigits-1-i], placeValueStyles[numDividendDigits-shiftRight+i]);
+		for (i = 0; i < numDifferenceDigits; i++) {
+			positionDigit(shiftRight - 1 - i, shiftDown, differenceDigitsArr[numDifferenceDigits - 1 - i], placeValueStyles[numDividendDigits - shiftRight + i]);
 		}
 
 		terminateSubtractionStep();
 	}
 	// + responseBoxWidth - 1
-	
+
 
 	if (DEBUG) console.log("...Leaving function executeSubtractionStep()");
 }
@@ -563,7 +628,7 @@ function terminateSubtractionStep() {
 	responseBox.style.display = "none";
 	toggleOperationButtons();
 
-	if(numDividendDigits > shiftRight) {
+	if (numDividendDigits > shiftRight) {
 		expectedOperation = "bringdown";
 	}
 	else {
@@ -588,9 +653,9 @@ function initBringDownStep() {
 	var dividendDigits = dividend.toString().split('');
 	var dividendDigitsArr = dividendDigits.map(Number);
 	//the bringDownNumber should will be found in the dividendDigitsArr at the index that corresponds to the length of the psuedodividend (assigned in the div step)
-	bringDownNumber = dividendDigitsArr[(pseudoDividend.toString().length)]; 
+	bringDownNumber = dividendDigitsArr[(pseudoDividend.toString().length)];
 	console.log("bringDownNumber: " + bringDownNumber);
-	
+
 
 	prompt = "Now bring down the " + bringDownNumber + ".";
 	updateSecondaryPrompt(getPositiveExclamation() + prompt);
@@ -609,7 +674,7 @@ function executeBringDownStep() {
 	var userResponse = parseInt(userInputForm.value); //grab user input from the userInputForm field
 	userInputForm.value = ""; //reset user input form
 
-	if(userResponse != bringDownNumber) { //user did not correctly answer question so we need to ask again
+	if (userResponse != bringDownNumber) { //user did not correctly answer question so we need to ask again
 		updateSecondaryPrompt("Oops, try again! " + prompt);
 		userInputForm.value = ""; //reset user input form
 		if (DEBUG) console.log("...Leaving function executeSubtractionStep()");
@@ -617,7 +682,7 @@ function executeBringDownStep() {
 	}
 	else {
 		//answer was correct so draw the digits
-		positionDigit(shiftRight, shiftDown, bringDownNumber, placeValueStyles[numDividendDigits-1-shiftRight]);
+		positionDigit(shiftRight, shiftDown, bringDownNumber, placeValueStyles[numDividendDigits - 1 - shiftRight]);
 
 		terminateBringDownStep();
 	}
@@ -643,7 +708,7 @@ function repeatStep() {
 	if (DEBUG) console.log("Entering function repeatStep()...");
 
 	currentStep = "repeat";
-	
+
 	expectedOperation = "divide";
 	selection = "";
 
@@ -653,14 +718,14 @@ function repeatStep() {
 	console.log("new dividend: " + dividend);
 
 	updatePrompt(getPositiveExclamation() + "Which step is next?");
-	
+
 	if (DEBUG) console.log("...Leaving function repeatStep()");
 }
 
 var remainder;
 function initRemainderStep() {
 	if (DEBUG) console.log("Entering function initRemainderStep()...");
-	
+
 	toggleOperationButtons();
 
 	currentStep = "remainder";
@@ -673,17 +738,17 @@ function initRemainderStep() {
 	positionDigit(quotientShiftRight, -1, "R", "remainder");
 	quotientShiftRight++;
 	positionResponseBox(quotientShiftRight, -1, 1);
-	
+
 	if (DEBUG) console.log("...Leaving function initRemainderStep()");
 }
 
 function executeRemainderStep() {
 	if (DEBUG) console.log("Entering function executeRemainderStep()...");
-	
+
 	var userResponse = parseInt(userInputForm.value); //grab user input from the userInputForm field
 	userInputForm.value = ""; //reset user input form
 
-	if(userResponse != remainder) { //user did not correctly answer question so we need to ask again
+	if (userResponse != remainder) { //user did not correctly answer question so we need to ask again
 		updateSecondaryPrompt("Oops, try again! " + prompt);
 		userInputForm.value = ""; //reset user input form
 		if (DEBUG) console.log("...Leaving function executeRemainderStep()");
@@ -701,13 +766,13 @@ function executeRemainderStep() {
 function gameEnd() {
 	if (DEBUG) console.log("Entering function gameEnd()...");
 	updateSecondaryPrompt("You did it! Now enter the final answer without leading zeroes.");
-	
+
 	//hide the operation buttons
 	var buttonContainer = document.getElementById("buttonContainer");
 	buttonContainer.style.display = "none";
 
 	//hide response box
-	responseBox.style.display="none";
+	responseBox.style.display = "none";
 
 	//show final answer container
 	var finalAnswerContainerWrapper = document.getElementById("finalAnswerContainerWrapper");
@@ -719,13 +784,13 @@ function gameEnd() {
 
 	var divisorElement = document.getElementById("divisorElement");
 	divisorElement.innerHTML = divisor;
-	
+
 	var answerElement = document.getElementById("answerElement");
-	var finalAnswer = Math.floor(dividend/divisor);
+	var finalAnswer = Math.floor(dividend / divisor);
 	answerElement.innerHTML = finalAnswer;
-	
+
 	var remainderElement = document.getElementById("remainderElement");
-	var finalAnswerRemainder = "R" + dividend%divisor;
+	var finalAnswerRemainder = "R" + dividend % divisor;
 	remainderElement.innerHTML = finalAnswerRemainder;
 
 	if (DEBUG) console.log("...Leaving function gameEnd()");
