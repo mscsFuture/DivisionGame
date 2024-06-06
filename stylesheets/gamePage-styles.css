@@ -215,7 +215,7 @@
 	color: black;
 }
 
-.button-container button:disabled {
+#buttonContainer button:disabled {
 	background-color: #878987;
 	box-shadow: 0 var(--btn-shadow-height) #6c6c6c;
 	border: solid;

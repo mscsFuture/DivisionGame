@@ -125,7 +125,7 @@ var delay = function (btnElement, callback) {
 	if (btnElement != null) {
 		btnElement.onmouseover = function () {
 			// Set timeout to be a timer which will invoke callback after 1s
-			timeout = setTimeout(callback, 500);
+			timeout = setTimeout(callback, 300);
 		};
 
 		btnElement.onmouseout = function () {
@@ -148,7 +148,7 @@ delay(document.getElementById('subtractBtn'), function () {
 	var speech = new SpeechSynthesisUtterance('subtract');
 	window.speechSynthesis.speak(speech);
 });
-delay(document.getElementById('bringdownBtn'), function () {
+delay(document.getElementById('bringDownBtn'), function () {
 	var speech = new SpeechSynthesisUtterance('bring down');
 	window.speechSynthesis.speak(speech);
 });
@@ -160,8 +160,6 @@ delay(document.getElementById('remainderBtn'), function () {
 	var speech = new SpeechSynthesisUtterance('remainder');
 	window.speechSynthesis.speak(speech);
 });
-
-
 
 
 
