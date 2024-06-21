@@ -509,3 +509,162 @@
 #answerElement {
 	color: rgb(103, 175, 195);
 }
+
+
+.openBtn {
+	display: flex;
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	z-index: 3;
+	background-color: #f5f8a8;
+	border: solid;
+	border-color: #c4c766;
+	padding: 5px;
+	border-radius: 10px;
+	font-family: 'Helvetica';
+	font-weight: 600;
+}
+
+.openBtn img {
+	width: 1.5vw;
+	height: auto;
+}
+
+.table .tableContent {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: calc(13 * var(--table-cell-size));
+	height: calc(13 * var(--table-cell-size));
+	z-index: 4;
+}
+
+.shading {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: #878987;
+	opacity: 0.7;
+	z-index: 4;
+	display: none;
+}
+
+.table.show .shading {
+	display: block;
+}
+
+.table.show .tableContent {
+	--table-cell-size: calc(45vw / 13);
+	/* transform: translate(-50%, -50%); */
+	font-family: "courier";
+	background-color: #eff8e2;
+	background-size: var(--table-cell-size) var(--table-cell-size);
+	background-image:
+		linear-gradient(to right, rgb(103, 175, 195) 2px, transparent 1px),
+		linear-gradient(to bottom, rgb(103, 175, 195) 2px, transparent 1px);
+	background-position: calc(0px - var(--grid-offset)) calc(0px - var(--grid-offset));
+}
+
+.table.show .tableDigits {
+	position: absolute;
+	display: block;
+	--table-cell-size: calc(45vw / 13);
+	text-align: center;
+	font-size: 1.5vw;
+	font-family: "courier";
+	color: #b58ddd;
+	font-weight: 600;
+}
+
+.table .tableDigits {
+	display: none;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+.table.show .tableDigits td {
+	--table-cell-size: calc(45vw / 13);
+	width: var(--table-cell-size);
+	height: var(--table-cell-size);
+	text-align: center;
+	font-family: "courier";
+}
+
+tr>td:nth-child(1),
+tr:nth-child(1)>td {
+	color: white;
+	background-color: rgb(103, 175, 195);
+	background-image:
+		linear-gradient(to right, rgb(103, 175, 195), transparent 1px),
+		linear-gradient(to bottom, rgb(103, 175, 195), transparent 1px);
+	background-position: calc(0px - var(--grid-offset)) calc(0px - var(--grid-offset));
+}
+
+tr:nth-child(2) td:nth-child(2) {
+	background-color: rgba(238, 238, 38, 0.504);
+}
+
+tr:nth-child(3) td:nth-child(3) {
+	background-color: rgba(238, 238, 38, 0.504);
+}
+
+tr:nth-child(4) td:nth-child(4) {
+	background-color: rgba(238, 238, 38, 0.504);
+}
+
+tr:nth-child(5) td:nth-child(5) {
+	background-color: rgba(238, 238, 38, 0.504);
+}
+
+tr:nth-child(6) td:nth-child(6) {
+	background-color: rgba(238, 238, 38, 0.504);
+}
+
+tr:nth-child(7) td:nth-child(7) {
+	background-color: rgba(238, 238, 38, 0.504);
+}
+
+tr:nth-child(8) td:nth-child(8) {
+	background-color: rgba(238, 238, 38, 0.504);
+}
+
+tr:nth-child(9) td:nth-child(9) {
+	background-color: rgba(238, 238, 38, 0.504);
+}
+
+tr:nth-child(10) td:nth-child(10) {
+	background-color: rgba(238, 238, 38, 0.504);
+}
+
+tr:nth-child(11) td:nth-child(11) {
+	background-color: rgba(238, 238, 38, 0.504);
+}
+
+tr:nth-child(12) td:nth-child(12) {
+	background-color: rgba(238, 238, 38, 0.504);
+}
+
+tr:nth-child(13) td:nth-child(13) {
+	background-color: rgba(238, 238, 38, 0.504);
+}
+
+.table.show .closeBtn {
+	display: block;
+	position: absolute;
+	top: -20px;
+	right: -20px;
+	cursor: pointer;
+	color: white;
+	z-index: 6;
+}
+
+
+.table .closeBtn {
+	display: none;
+}

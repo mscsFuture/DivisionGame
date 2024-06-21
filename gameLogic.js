@@ -62,9 +62,27 @@ function gameInit() {
 	menuPage.style.display = 'none';
 	gamePage.style.display = 'block';
 
-	divisor = getRandomInt(20) + 1;
+	//calculate difficulty 
+	const level = document.querySelector('input[name="difficulty"]:checked')
+	var max;
+	var min;
+	if (level.value === 'easy') {
+		max = 5;
+		min = 1;
+	}
+	if (level.value === 'medium') {
+		max = 5;
+		min = 5;
+	}
+	if (level.value === 'hard') {
+		max = 10;
+		min = 10;
+	}
+	divisor = getRandomInt(max) + min;
 	dividend = divisor * (getRandomInt(75) + 10)
 		+ (Math.random() < 0.45 ? getRandomInt(20) : 0);
+
+
 
 	console.log("Divisor: " + divisor);
 	console.log("Dividend: " + dividend);
@@ -114,8 +132,18 @@ function gameInit() {
 
 
 function speakTxt(operation) {
-	var speech = new SpeechSynthesisUtterance(operation);
-	window.speechSynthesis.speak(speech);
+	if (muteMenu && (document.getElementById('menuPage').style.display !== 'none')) {
+		muteGame = true;
+		toggleVolumeGame();
+	}
+	if (!muteMenu && (document.getElementById('menuPage').style.display !== 'none')) {
+		var speech = new SpeechSynthesisUtterance(operation);
+		window.speechSynthesis.speak(speech);
+	}
+	if (!muteGame && (document.getElementById('gamePage').style.display !== 'none')) {
+		var speech = new SpeechSynthesisUtterance(operation);
+		window.speechSynthesis.speak(speech);
+	}
 }
 
 var delay = function (btnElement, callback) {
@@ -137,28 +165,42 @@ var delay = function (btnElement, callback) {
 };
 
 delay(document.getElementById('divideBtn'), function () {
-	var speech = new SpeechSynthesisUtterance('divide');
-	window.speechSynthesis.speak(speech);
+	if (!muteGame) {
+		var speech = new SpeechSynthesisUtterance('divide');
+		window.speechSynthesis.speak(speech);
+	}
+
 });
 delay(document.getElementById('multiplyBtn'), function () {
-	var speech = new SpeechSynthesisUtterance('multiply');
-	window.speechSynthesis.speak(speech);
+	if (!muteGame) {
+		var speech = new SpeechSynthesisUtterance('multiply');
+		window.speechSynthesis.speak(speech);
+	}
+
 });
 delay(document.getElementById('subtractBtn'), function () {
-	var speech = new SpeechSynthesisUtterance('subtract');
-	window.speechSynthesis.speak(speech);
+	if (!muteGame) {
+		var speech = new SpeechSynthesisUtterance('subtract');
+		window.speechSynthesis.speak(speech);
+	}
 });
 delay(document.getElementById('bringDownBtn'), function () {
-	var speech = new SpeechSynthesisUtterance('bring down');
-	window.speechSynthesis.speak(speech);
+	if (!muteGame) {
+		var speech = new SpeechSynthesisUtterance('bring down');
+		window.speechSynthesis.speak(speech);
+	}
 });
 delay(document.getElementById('repeatBtn'), function () {
-	var speech = new SpeechSynthesisUtterance('repeat');
-	window.speechSynthesis.speak(speech);
+	if (!muteGame) {
+		var speech = new SpeechSynthesisUtterance('repeat');
+		window.speechSynthesis.speak(speech);
+	}
 });
 delay(document.getElementById('remainderBtn'), function () {
-	var speech = new SpeechSynthesisUtterance('remainder');
-	window.speechSynthesis.speak(speech);
+	if (!muteGame) {
+		var speech = new SpeechSynthesisUtterance('remainder');
+		window.speechSynthesis.speak(speech);
+	}
 });
 
 
@@ -221,8 +263,11 @@ function updatePrompt(text) {
 
 
 	var promptTxt = prompt.textContent;
-	var speech = new SpeechSynthesisUtterance(promptTxt);
-	window.speechSynthesis.speak(speech);
+	if (!muteGame) {
+		var speech = new SpeechSynthesisUtterance(promptTxt);
+		window.speechSynthesis.speak(speech);
+	}
+
 
 
 	if (DEBUG) console.log("...Leaving function updatePrompt()");
@@ -235,8 +280,10 @@ function updateSecondaryPrompt(text) {
 
 
 	var promptTxt = prompt.textContent;
-	var speech = new SpeechSynthesisUtterance(promptTxt);
-	window.speechSynthesis.speak(speech);
+	if (!muteGame) {
+		var speech = new SpeechSynthesisUtterance(promptTxt);
+		window.speechSynthesis.speak(speech);
+	}
 
 
 	if (DEBUG) console.log("...Leaving function updateSecondaryPrompt()");
@@ -400,6 +447,11 @@ function initDivisionStep() {
 
 	if (firstpass) {
 		pseudoDividend = Math.floor(dividend / (10 ** (numDividendDigits - digitCount)));
+
+		if (Math.floor(pseudoDividend / divisor) === 0) {
+			pseudoDividend = pseudoDividend = Math.floor(dividend / (10 ** (numDividendDigits - 2)));
+			quotientShiftRight++;
+		}
 		console.log("psuedoDividend: " + pseudoDividend);
 	}
 
@@ -761,9 +813,76 @@ function executeRemainderStep() {
 	if (DEBUG) console.log("...Leaving function executeRemainderStep()");
 }
 
+// Multiplication Table
+var tableFlag = false;
+function toggleTable() {
+	var popup = document.getElementById("multTable");
+	popup.classList.toggle("show");
+	if (popup.classList.contains('show') && !tableFlag) {
+		populateMultiplicationTable();
+		tableFlag = true;
+	}
+}
+
+function populateMultiplicationTable() {
+	const table = document.createElement('table')
+	for (var i = 0; i <= 12; i++) {
+		const rows = document.createElement('tr');
+		for (var j = 0; j <= 12; j++) {
+			const cols = document.createElement('td');
+			if (i === 0 && j === 0) cols.innerHTML = '';
+			else if (i === 0) cols.innerHTML = j;
+			else if (j === 0) cols.innerHTML = i;
+			else cols.innerHTML = i * j;
+			rows.appendChild(cols);
+		}
+		table.appendChild(rows);
+	}
+	document.getElementById("multiplicationTable").appendChild(table);
+}
+
+//Volume options
+var muteMenu = false;
+function toggleVolumeMenu() {
+	var img = document.getElementById('volumeImgMenu');
+	if (img.src.includes('speaker')) {
+		img.src = "images/mute.png";
+		// disable text to speech 
+		muteMenu = true;
+	} else {
+		img.src = "images/speaker.png";
+		muteMenu = false;
+	}
+}
+
+var muteGame = muteMenu;
+function toggleVolumeGame() {
+	muteGame = muteMenu;
+	var img = document.getElementById('volumeImgGame');
+	if (img.src.includes('speaker')) {
+		img.src = "images/mute.png";
+		// disable text to speech 
+		muteGame = true;
+	} else {
+		img.src = "images/speaker.png";
+		muteGame = false;
+	}
+}
+
+// stops settings from closing when an option is selected
+document.querySelector('.settingsContent').addEventListener('click', function (event) {
+	event.stopPropagation();
+});
+
+function toggleSettings() {
+	var popup = document.getElementById("settingsContent");
+	popup.classList.toggle("show");
+}
+
+
 function gameEnd() {
 	if (DEBUG) console.log("Entering function gameEnd()...");
-	updateSecondaryPrompt("You did it! Now enter the final answer without leading zeroes.");
+	updateSecondaryPrompt("You did it! Now enter the final answer.");
 
 	//hide the operation buttons
 	var buttonContainer = document.getElementById("buttonContainer");
