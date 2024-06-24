@@ -9,7 +9,6 @@
   <body>
     <!-- <div class="background-image"></div> -->
 
-    <!-- Added here-->
     <section id="menuPage">
       <div id="menuPageContent">
         <h2 id="text-shadows">Long Division <br> Helper</h2>
@@ -17,6 +16,30 @@
       <nav>
         <button id="startButton" onmouseover="speakTxt('press me to play')" onclick="gameInit()">Press Me to Play!</button>
       </nav>
+      <div class="volumeBtn" onclick="toggleVolumeMenu()">
+        <img id="volumeImgMenu" src="images/speaker.png">
+      </div>
+      <div class="settingsPopup" id="settingsPopup" onclick="toggleSettings()"><img src="images/2040504.png">
+        <span class="settingsContent" id="settingsContent">
+          <div class="overlay" onclick="toggleSettings()"></div>
+          <div class="diffContainer">
+            <h2>Difficulty</h2>
+            <div class="radioContainer">
+              <input type="radio" name="difficulty" id="radio1" value="easy" checked>
+              <label for="radio1">Easy</label>
+            </div>
+            <div class="radioContainer">
+              <input type="radio" name="difficulty" id="radio2" value="medium">
+              <label for="radio2">Medium</label>
+            </div>
+            <div class="radioContainer">
+              <input type="radio" name="difficulty" id="radio3" value="hard">
+              <label for="radio3">Hard</label>
+            </div>
+          </div>
+        </span>
+      </div>
+      
     </section>
 
     <section id="gameEndPage" style="display: none">
@@ -24,6 +47,7 @@
         <p class="text" id="gameEndText">Problem Recap:</p>
         <p class="text" id="problemsText"></p>
       </div>
+
     </section>
 
     <section id="gamePage" style="display: none">
@@ -80,6 +104,21 @@
 
         </div>
       </div>
+
+      
+      <div class="table" id="multTable">
+        <div class="shading"></div>
+        <div class="tableContent">
+          <div class="closeBtn" onclick="toggleTable()">&times;</div>
+        <table class="tableDigits" id="multiplicationTable"></table>
+        </div>
+      </div>
+
+      <button class="openBtn" onclick="toggleTable()"><img src="images/grid.png" alt="Multiplication Table"></button>
+      <!-- <a href="https://www.flaticon.com/free-icons/table" title="table icons">Table icons created by Pixelmeetup - Flaticon</a> -->
+
+      <div class="volumeBtn" onclick="toggleVolumeGame()">
+        <img id="volumeImgGame" src="images/speaker.png">
 
     </section>
     <script src="promptResponses.js"></script>
